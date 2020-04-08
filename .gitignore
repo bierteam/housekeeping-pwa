@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+selenium-debug.log
+selenium-server.log
+ecosystem.config.js
+config.js
+.env
+kubeconfig
+secrets.yaml
+secrets.yml
