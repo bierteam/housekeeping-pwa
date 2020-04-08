@@ -22,7 +22,7 @@ spec:
         app: hk-pwa-backend
     spec:
       containers:
-      - image: bierteam/hk-pwa/backend:master
+      - image: bierteam/hk-pwa-backend:master
         envFrom:
         - secretRef:
             name: drinkn-env

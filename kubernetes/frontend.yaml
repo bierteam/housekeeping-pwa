@@ -22,7 +22,7 @@ spec:
         app: hk-pwa-frontend
     spec:
       containers:
-      - image: bierteam/hk-pwa/frontend:master
+      - image: bierteam/hk-pwa-frontend:master
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3

@@ -19,8 +19,8 @@ deploy:
     # all_branches: true
     branch: master
   script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin;
-    docker build -t bierteam/hk-pwa/$FOLDER:$TRAVIS_BRANCH .;
-    docker push bierteam/hk-pwa/$FOLDER:$TRAVIS_BRANCH
+    docker build -t bierteam/hk-pwa-$FOLDER:$TRAVIS_BRANCH .;
+    docker push bierteam/hk-pwa-$FOLDER:$TRAVIS_BRANCH
 jobs:
   include:
     - stage: deploy
