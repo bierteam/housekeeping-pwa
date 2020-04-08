@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "Oscar Wieman",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^14.3.3"
+  }
+}
