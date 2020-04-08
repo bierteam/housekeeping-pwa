@@ -1,0 +1,21 @@
+﻿apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hk-pwa-ingress
+  namespace: oscar
+spec:
+  rules:
+  - host: hh.oscarr.nl
+    http:
+      paths:
+      - backend:
+          serviceName: hk-pwa-backend
+          servicePort: 80
+        path: /api
+      - backend:
+          serviceName: hk-pwa-frontend
+          servicePort: 80
+  tls:
+  - hosts:
+    - hh.oscarr.nl
+status:
