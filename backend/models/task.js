@@ -6,9 +6,30 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: uuid
   },
-  task: {
+  name: {
     type: String,
     unique: true,
+    required: true,
+    trim: true,
+    lowercase: false
+  },
+  points: {
+    type: String,
+    unique: false,
+    required: true,
+    trim: true,
+    lowercase: false
+  },
+  description: {
+    type: String,
+    unique: false,
+    required: true,
+    trim: true,
+    lowercase: false
+  },
+  completed: {
+    type: Boolean,
+    unique: false,
     required: true,
     trim: true,
     lowercase: false
