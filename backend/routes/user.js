@@ -12,18 +12,12 @@ router.post('/', async function (req, res) {
   }
 })
 
-router.post('/login', async function (req, res) {
+router.post('/signin', async function (req, res) {
   // Login a registered user
   try {
     const { username, password } = req.body
-    // @ts-ignore
-    const user = await UserService.findByCredentials(username, password)
-    console.log(user)
-    if (!user) {
-      return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
-    }
-    const token = await user.generateAuthToken()
-    res.send({ user, token })
+    const token = await UserService.signInUserAsync(username, password)
+    res.send(token)
   } catch (error) {
     res.status(400).send(error)
   }

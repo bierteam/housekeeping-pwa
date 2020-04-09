@@ -14,13 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 7
-  },
-  tokens: [{
-    token: {
-      type: String,
-      required: true
-    }
-  }]
+  }
 })
 
 userSchema.pre('save', async function (next) {
@@ -35,10 +29,8 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.generateAuthToken = async function () {
   const user = this
   // TODO make jwt expire
-  const token = jwt.sign({ username: user.username }, process.env.JWTSECRET)
-  user.tokens = user.tokens.concat({ token })
   await user.save()
-  return token
+  return jwt.sign({ username: user.username }, process.env.JWTSECRET)
 }
 
 userSchema.statics.findByCredentials = async (username, password) => {
@@ -50,7 +42,7 @@ userSchema.statics.findByCredentials = async (username, password) => {
   if (!isPasswordMatch) {
     console.log('Invalid login credentials')
   }
-  return user
+  return jwt.sign({ username: user.username }, process.env.JWTSECRET)
 }
 
 const User = mongoose.model('User', userSchema)

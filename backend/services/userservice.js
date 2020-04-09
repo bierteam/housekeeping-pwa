@@ -1,3 +1,4 @@
+// @ts-nocheck
 const User = require('../models/user')
 
 class UserService {
@@ -8,6 +9,15 @@ class UserService {
     // @ts-ignore
     const token = await newUser.generateAuthToken()
     return token
+  }
+
+  async signInUserAsync (username, password) {
+    const user = await User.findByCredentials(username, password)
+    if (!user) {
+      //Todo error handling
+      return
+    }
+    return user
   }
 }
 
