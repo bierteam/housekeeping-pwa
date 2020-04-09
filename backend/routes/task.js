@@ -3,13 +3,19 @@ const router = express.Router()
 var MongoService = new (require('../services/mongoservice'))()
 
 router.get('/', async function (req, res) {
-  const someRandomTask = await MongoService.findAllTasksAsync()
-  res.json(someRandomTask)
+  const tasks = await MongoService.findAllTasksAsync()
+  res.json(tasks)
 })
 
 router.post('/', async function (req, res) {
   const taskFromBody = req.body
   await MongoService.createTaskAsync(taskFromBody)
+  res.send()
+})
+
+router.put('/', async function (req, res) {
+  const taskFromBody = req.body
+  await MongoService.updateTaskAsync(taskFromBody)
   res.send()
 })
 

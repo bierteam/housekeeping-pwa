@@ -7,7 +7,12 @@ class MongoService {
   }
 
   async createTaskAsync (taskObject) {
-    task.create(taskObject)
+    await task.create(taskObject)
+  }
+
+  async updateTaskAsync (taskObject) {
+    console.log(taskObject)
+    await task.updateOne({}, taskObject)
   }
 }
 
