@@ -11,7 +11,6 @@ class MongoService {
   }
 
   async updateTaskAsync (taskObject) {
-    console.log(taskObject)
     await task.updateOne({}, taskObject)
   }
 }
