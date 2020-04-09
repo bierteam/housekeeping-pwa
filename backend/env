@@ -1,0 +1,9 @@
+#DEVMODE=enabled
+#PORT=3000
+#DB_HOST=cluster0-j9jty.mongodb.net
+#DB_USERNAME=dikkelul3bier
+#DB_PASSWORD=UCsxHbseZoZedLTeMUL9QuEttTAYrY
+#DB_NAME=peter
+NODE_ENV=development
+JWTSECRET=KoudPils
+MONGODB_URI=mongodb+srv://dikkelul3bier:UCsxHbseZoZedLTeMUL9QuEttTAYrY@cluster0-j9jty.mongodb.net/peter?retryWrites=true&w=majority
