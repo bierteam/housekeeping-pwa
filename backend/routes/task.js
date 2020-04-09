@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-var MongoService = new (require('../services/mongoservice'))()
+const MongoService = new (require('../services/mongoservice'))()
 
 router.get('/', async function (req, res) {
   const tasks = await MongoService.findAllTasksAsync()
