@@ -1,1 +1,2 @@
-# This is a housekeeping app. It can be used to help you track your chores and tasks around the house. 
+# Housekeeping-PWA
+A Housekeeping app to help you keep track of your chores and tasks around the house
