@@ -25,7 +25,7 @@ spec:
       - image: bierteam/hk-pwa-backend:master
         envFrom:
         - secretRef:
-            name: drinkn-env
+            name: hk-pwa-env
             optional: false
         imagePullPolicy: Always
         name: hk-pwa-backend
