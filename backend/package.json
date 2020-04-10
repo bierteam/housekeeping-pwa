@@ -18,8 +18,8 @@
     "start": "nodemon",
     "test": "standard",
     "coverage": "codecov",
-    "docker-build": "docker build . -t auth",
-    "docker-run": "docker run --env-file .env auth"
+    "docker-build": "docker build . -t bierteam/hk-pwa-backend",
+    "docker-run": "docker run --rm --env-file .env bierteam/hk-pwa-backend"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "codecov": "3.6.5",
-    "debug": "4.1.1",
     "dotenv": "8.2.0",
     "jest": "25.3.0",
     "nodemon": "2.0.3",
