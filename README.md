@@ -2,18 +2,21 @@
 ## A Housekeeping app to help you keep track of your chores and tasks around the house
 ### Working:
 -Beautiful readme
+
 -Great staff
+
 -Many bugs & features
+
 
 ### Planned:
 
-Recurring schedule
+-Recurring schedule
 
-Point/reward system
+-Point/reward system
 
-Time limits
+-Time limits
 
-Progressive web app
+-Progressive web app
 
 
 
