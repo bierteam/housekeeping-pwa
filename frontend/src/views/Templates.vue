@@ -1,5 +1,5 @@
 <template>
   <div class="templates">
-    <h1>Here you can create templates</h1>
+    <h1>Peter is koning</h1>
   </div>
 </template>
