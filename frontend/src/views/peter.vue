@@ -14,6 +14,7 @@
         <b-dropdown-text>Epische Links</b-dropdown-text>
         <b-dropdown-item href="https://pornhub.com/" target="_blank">Hehe</b-dropdown-item>
         <b-dropdown-item href="https://xvideos.com/" target="_blank">Hoho</b-dropdown-item>
+        <b-dropdown-item href="snake.html" target="_blank">snake</b-dropdown-item>
 
       </b-dropdown>
     </div>
