@@ -14,7 +14,7 @@ class UserService {
   async signInUserAsync (username, password) {
     const user = await User.findByCredentials(username, password)
     if (!user) {
-      //Todo error handling
+      // Todo error handling
       return
     }
     return user
