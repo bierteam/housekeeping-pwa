@@ -3,10 +3,12 @@
     <div id="nav">
       <router-link to="/">Tasks</router-link> |
       <router-link to="/templates">Templates</router-link> |
-      <router-link to="/verify">Verify</router-link>
-      <router-link to="/peter">test</router-link>
-    </div>
+      <router-link to="/verify">Verify</router-link> |
+      <router-link to="/peter">Dit is een vervelende tekst</router-link> |
+      <router-link to="/test">Whollah</router-link>
     <router-view/>
+    </div>
+
   </div>
 </template>
 
