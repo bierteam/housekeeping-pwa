@@ -6,6 +6,7 @@ const express = require('express')
 const logger = require('morgan')
 
 const app = express()
+const health = require('./routes/health')
 
 app.all('/*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -35,6 +36,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true
 })
 
+app.use('/health', health)
 const routes = require('./routes')
 app.use('/api/v1', routes)
 

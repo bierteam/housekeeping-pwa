@@ -10,13 +10,13 @@ router.get('/', async function (req, res) {
 router.post('/', async function (req, res) {
   const taskFromBody = req.body
   await MongoService.createTaskAsync(taskFromBody)
-  res.send()
+  res.json()
 })
 
 router.put('/', async function (req, res) {
   const taskFromBody = req.body
   await MongoService.updateTaskAsync(taskFromBody)
-  res.send()
+  res.json()
 })
 
 module.exports = router
