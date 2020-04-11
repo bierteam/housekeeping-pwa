@@ -7,11 +7,17 @@ class MongoService {
   }
 
   async createTaskAsync (taskObject) {
-    await task.create(taskObject)
+    const tasks = await task.create(taskObject)
+    return tasks
   }
 
   async updateTaskAsync (taskObject) {
-    await task.updateOne({}, taskObject)
+    const _id = taskObject._id
+    if (!_id) {
+      throw new Error('No object id.')
+    }
+    const tasks = await task.findOneAndUpdate({ _id }, taskObject, { new: true })
+    return tasks
   }
 }
 

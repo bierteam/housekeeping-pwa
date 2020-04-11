@@ -8,7 +8,8 @@ router.post('/create', async function (req, res) {
     const token = await UserService.createUserAsync(userFromBody)
     res.status(201).json({ token })
   } catch (error) {
-    res.status(400).json(error)
+    console.log(error)
+    res.status(500).json('Something went wrong, maybe the user already exists...')
   }
 })
 
@@ -16,7 +17,7 @@ router.post('/signin', async function (req, res) {
   try {
     const { username, password } = req.body
     const token = await UserService.signInUserAsync(username, password)
-    res.json(token)
+    res.json({ token })
   } catch (error) {
     console.log(error)
     res.status(401).json('Error while logging in')

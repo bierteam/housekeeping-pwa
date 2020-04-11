@@ -1,5 +1,5 @@
+const { v4: uuid } = require('uuid')
 const mongoose = require('mongoose')
-const uuid = require('uuid/v4')
 
 const taskSchema = new mongoose.Schema({
   _id: {
