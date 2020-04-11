@@ -34,7 +34,7 @@ userSchema.methods.generateAuthToken = async function () {
   return jwt.sign({
     username: user.username,
     _id: user._id
-  }, process.env.JWTSECRET, { expiresIn: '1h' })
+  }, process.env.JWTSECRET, { expiresIn: '1h' }) // do not set too long, there is no check if the user is valid
 }
 
 userSchema.statics.findByCredentials = async (username, password) => {

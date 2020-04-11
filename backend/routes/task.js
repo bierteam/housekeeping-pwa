@@ -23,7 +23,7 @@ router.post('/', async function (req, res) {
   }
 })
 
-router.put('/', async function (req, res) {
+router.patch('/', async function (req, res) {
   try {
     const taskFromBody = req.body
     const tasks = await MongoService.updateTaskAsync(taskFromBody)

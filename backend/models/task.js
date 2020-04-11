@@ -33,7 +33,6 @@ const taskSchema = new mongoose.Schema({
       if (this.completed) {
         return Date.now()
       }
-      return null
     }
   }
 
