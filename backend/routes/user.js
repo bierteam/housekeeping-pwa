@@ -6,9 +6,9 @@ router.post('/create', async function (req, res) {
   try {
     const userFromBody = req.body
     const token = await UserService.createUserAsync(userFromBody)
-    res.status(201).send({ token })
+    res.status(201).json({ token })
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).json(error)
   }
 })
 
@@ -16,10 +16,10 @@ router.post('/signin', async function (req, res) {
   try {
     const { username, password } = req.body
     const token = await UserService.signInUserAsync(username, password)
-    res.send(token)
+    res.json(token)
   } catch (error) {
     console.log(error)
-    res.status(401).send('Error while logging in')
+    res.status(401).json('Error while logging in')
   }
 })
 
