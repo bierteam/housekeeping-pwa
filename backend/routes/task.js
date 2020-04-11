@@ -34,4 +34,15 @@ router.put('/', async function (req, res) {
   }
 })
 
+router.delete('/', async function (req, res) {
+  try {
+    const taskFromBody = req.body
+    await MongoService.deleteTaskAsync(taskFromBody)
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
+})
+
 module.exports = router
