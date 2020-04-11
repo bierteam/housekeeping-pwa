@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>Dit is snake</h1>
+    <h1>Keigavegoedetest</h1>
   </div>
 </template>
