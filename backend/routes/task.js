@@ -3,20 +3,46 @@ const router = express.Router()
 const MongoService = new (require('../services/mongoservice'))()
 
 router.get('/', async function (req, res) {
-  const tasks = await MongoService.findAllTasksAsync()
-  res.json(tasks)
+  try {
+    const tasks = await MongoService.findAllTasksAsync()
+    res.status(200).json(tasks)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong.')
+  }
 })
 
 router.post('/', async function (req, res) {
-  const taskFromBody = req.body
-  await MongoService.createTaskAsync(taskFromBody)
-  res.json()
+  try {
+    const taskFromBody = req.body
+    const tasks = await MongoService.createTaskAsync(taskFromBody)
+    res.status(201).json(tasks)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
 })
 
-router.put('/', async function (req, res) {
-  const taskFromBody = req.body
-  await MongoService.updateTaskAsync(taskFromBody)
-  res.json()
+router.patch('/', async function (req, res) {
+  try {
+    const taskFromBody = req.body
+    const tasks = await MongoService.updateTaskAsync(taskFromBody)
+    res.status(201).json(tasks)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
+})
+
+router.delete('/', async function (req, res) {
+  try {
+    const taskFromBody = req.body
+    await MongoService.deleteTaskAsync(taskFromBody)
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
 })
 
 module.exports = router

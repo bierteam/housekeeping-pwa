@@ -6,9 +6,10 @@ router.post('/create', async function (req, res) {
   try {
     const userFromBody = req.body
     const token = await UserService.createUserAsync(userFromBody)
-    res.status(201).json({ token })
+    res.status(201).json(token)
   } catch (error) {
-    res.status(400).json(error)
+    console.log(error)
+    res.status(500).json('Something went wrong, maybe the user already exists...')
   }
 })
 
