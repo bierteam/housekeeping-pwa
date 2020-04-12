@@ -11,11 +11,10 @@ class UserService {
     return token
   }
 
-  async signInUserAsync (username, password) {
-    const user = await User.findByCredentials(username, password)
+  async signInUserAsync () {
+    const user = await User.findByCredentials(this.newUser.username, this.newUser.password)
     if (!user) {
-      // Todo error handling
-      return
+      throw new Error('Invalid username or password')
     }
     return user
   }
