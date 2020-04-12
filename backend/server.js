@@ -16,9 +16,10 @@ app.all('/*', function (req, res, next) {
   next()
 })
 
-app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'))
 app.disable('x-powered-by')
 app.use(express.json())
+app.use('/health', health) // above logger to not log this every second
+app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'))
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -27,7 +28,6 @@ mongoose.connect(process.env.MONGODB_URI, {
   useFindAndModify: false
 })
 
-app.use('/health', health)
 const routes = require('./routes')
 app.use('/api/v1', routes)
 
