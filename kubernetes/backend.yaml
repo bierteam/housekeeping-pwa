@@ -7,14 +7,13 @@ metadata:
   namespace: oscar
 spec:
   replicas: 3
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: hk-pwa-backend
   strategy:
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 0
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
@@ -28,23 +27,26 @@ spec:
             name: hk-pwa-env
             optional: false
         imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 2
+          failureThreshold: 3
+          successThreshold: 3
         name: hk-pwa-backend
         resources: {}
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: {}
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
-        stdin: true
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        tty: true
       dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
 status:
 ---
 apiVersion: v1
@@ -58,5 +60,4 @@ spec:
   ports:
     - port: 80
       name: default
-      protocol: TCP
       targetPort: 3000

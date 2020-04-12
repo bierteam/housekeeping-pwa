@@ -1,5 +1,5 @@
+const { v4: uuid } = require('uuid')
 const mongoose = require('mongoose')
-const uuid = require('uuid/v4')
 
 const taskSchema = new mongoose.Schema({
   _id: {
@@ -8,32 +8,35 @@ const taskSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    unique: true,
     required: true,
     trim: true,
     lowercase: false
   },
   points: {
     type: Number,
-    unique: false,
-    required: true,
-    trim: true,
-    lowercase: false
+    required: true
   },
   description: {
     type: String,
-    unique: false,
     required: true,
     trim: true,
     lowercase: false
   },
   completed: {
     type: Boolean,
-    unique: false,
     required: true,
-    trim: true,
-    lowercase: false
+    default: false
+  },
+  completedDate: {
+    type: Date,
+    default: function () {
+      if (this.completed) {
+        return Date.now()
+      }
+    }
   }
+
+  // TODO group/household
 })
 
 const Task = mongoose.model('Task', taskSchema)

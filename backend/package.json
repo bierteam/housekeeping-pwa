@@ -18,8 +18,8 @@
     "start": "nodemon",
     "test": "standard",
     "coverage": "codecov",
-    "docker-build": "docker build . -t auth",
-    "docker-run": "docker run --env-file .env auth"
+    "docker-build": "docker build . -t bierteam/hk-pwa-backend",
+    "docker-run": "docker run --rm --env-file .env bierteam/hk-pwa-backend"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -28,18 +28,17 @@
     "http-errors": "~1.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
-    "morgan": "~1.9.1",
-    "otplib": "^11.0.1",
-    "uuid": "^3.3.2"
+    "morgan": "~1.10.0",
+    "otplib": "^12.0.0",
+    "uuid": "^7.0.0"
   },
   "devDependencies": {
     "codecov": "3.6.5",
-    "debug": "2.6.9",
     "dotenv": "8.2.0",
     "jest": "25.3.0",
-    "nodemon": "2.0.2",
+    "nodemon": "2.0.3",
     "rimraf": "3.0.2",
-    "standard": "14.3.1"
+    "standard": "14.3.3"
   },
   "jest": {
     "testEnvironment": "node"

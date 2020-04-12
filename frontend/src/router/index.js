@@ -1,22 +1,37 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import Tasks from '../views/Tasks.vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueRouter)
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Tasks',
+    component: Tasks
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/templates',
+    name: 'Templates',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (templates.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Templates.vue')
+  },
+  {
+    path: '/verify',
+    name: 'Verify',
+    // route level code-splitting
+    // this generates a separate chunk (templates.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Verify.vue')
   }
 ]
 

@@ -8,10 +8,10 @@ router.post('/create', async function (req, res) {
     const userFromBody = new User(req.body)
     const userService = new UserService(userFromBody)
     const token = await userService.createUserAsync(userFromBody)
-    res.status(201).json({ token })
+    res.status(201).json(token)
   } catch (error) {
-    // TODO log error, send generic response
-    res.status(400).json(error)
+    console.log(error)
+    res.status(500).json('Something went wrong, maybe the user already exists...')
   }
 })
 
