@@ -26,9 +26,9 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this
-  return jwt.sign({ 
+  return jwt.sign({
     username: user.username
-  }, process.env.JWTSECRET, { expiresIn: '1h' })
+  }, 'process.env.JWTSECRET', { expiresIn: '1h' })
 }
 
 userSchema.statics.findByCredentials = async (username, password) => {

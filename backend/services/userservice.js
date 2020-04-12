@@ -1,10 +1,13 @@
 const User = require('../models/user')
 
 class UserService {
-  async createUserAsync (user) {
-    const newUser = new User(user)
-    await newUser.save()
-    const token = await newUser.generateAuthToken()
+  constructor (user) {
+    this.newUser = user
+  }
+
+  async createUserAsync () {
+    await this.newUser.save()
+    const token = await this.newUser.generateAuthToken()
     return token
   }
 
