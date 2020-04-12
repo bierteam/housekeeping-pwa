@@ -16,7 +16,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon",
-    "test": "standard",
+    "test": "standard && jest",
     "coverage": "codecov",
     "docker-build": "docker build . -t bierteam/hk-pwa-backend",
     "docker-run": "docker run --rm --env-file .env bierteam/hk-pwa-backend"
@@ -42,5 +42,10 @@
   },
   "jest": {
     "testEnvironment": "node"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
