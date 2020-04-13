@@ -1,25 +1,29 @@
 const express = require('express')
 const router = express.Router()
-const UserService = new (require('../services/userservice'))()
+const UserService = require('../services/userService')
+const User = require('../models/user')
 
-router.post('/', async function (req, res) {
+router.post('/create', async function (req, res) {
   try {
-    const userFromBody = req.body
-    const token = await UserService.createUserAsync(userFromBody)
-    res.status(201).send({ token })
+    const userFromBody = new User(req.body)
+    const userService = new UserService(userFromBody)
+    const token = await userService.createUserAsync()
+    res.status(201).json(token)
   } catch (error) {
-    res.status(400).send(error)
+    console.log(error)
+    res.status(500).json('Something went wrong, maybe the user already exists...')
   }
 })
 
 router.post('/signin', async function (req, res) {
-  // Login a registered user
   try {
-    const { username, password } = req.body
-    const token = await UserService.signInUserAsync(username, password)
-    res.send(token)
+    const userFromBody = new User(req.body)
+    const userService = new UserService(userFromBody)
+    const token = await userService.signInUserAsync()
+    res.json(token)
   } catch (error) {
-    res.status(400).send(error)
+    console.log(error)
+    res.status(401).json('Error while logging in')
   }
 })
 
