@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const MongoService = new (require('../services/mongoservice'))()
+const TaskService = require('../services/taskService')
 
 router.get('/', async function (req, res) {
   try {
-    const tasks = await MongoService.findAllTasksAsync()
+    const taskService = new TaskService()
+    const tasks = await taskService.findAllTasksAsync()
     res.status(200).json(tasks)
   } catch (error) {
     console.log(error)
@@ -15,7 +16,8 @@ router.get('/', async function (req, res) {
 router.post('/', async function (req, res) {
   try {
     const taskFromBody = req.body
-    const tasks = await MongoService.createTaskAsync(taskFromBody)
+    const taskService = new TaskService(taskFromBody)
+    const tasks = await taskService.createTaskAsync(taskFromBody)
     res.status(201).json(tasks)
   } catch (error) {
     console.log(error)
@@ -26,7 +28,8 @@ router.post('/', async function (req, res) {
 router.patch('/', async function (req, res) {
   try {
     const taskFromBody = req.body
-    const tasks = await MongoService.updateTaskAsync(taskFromBody)
+    const taskService = new TaskService(taskFromBody)
+    const tasks = await taskService.updateTaskAsync(taskFromBody)
     res.status(201).json(tasks)
   } catch (error) {
     console.log(error)
@@ -37,7 +40,8 @@ router.patch('/', async function (req, res) {
 router.delete('/', async function (req, res) {
   try {
     const taskFromBody = req.body
-    await MongoService.deleteTaskAsync(taskFromBody)
+    const taskService = new TaskService(taskFromBody)
+    await taskService.deleteTaskAsync(taskFromBody)
     res.sendStatus(200)
   } catch (error) {
     console.log(error)

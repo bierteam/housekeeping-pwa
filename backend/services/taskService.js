@@ -1,6 +1,6 @@
 const task = require('../models/task')
 
-class MongoService {
+class TaskService {
   async findAllTasksAsync () {
     const tasks = await task.find()
     return tasks
@@ -29,4 +29,4 @@ class MongoService {
   }
 }
 
-module.exports = MongoService
+module.exports = TaskService
