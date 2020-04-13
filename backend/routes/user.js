@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const UserService = new (require('../services/userservice'))()
+const UserService = require('../services/userservice')
+const User = require('../models/user')
 
 router.post('/create', async function (req, res) {
   try {
-    const userFromBody = req.body
-    const token = await UserService.createUserAsync(userFromBody)
+    const userFromBody = new User(req.body)
+    const userService = new UserService(userFromBody)
+    const token = await userService.createUserAsync()
     res.status(201).json(token)
   } catch (error) {
     console.log(error)
@@ -15,8 +17,9 @@ router.post('/create', async function (req, res) {
 
 router.post('/signin', async function (req, res) {
   try {
-    const { username, password } = req.body
-    const token = await UserService.signInUserAsync(username, password)
+    const userFromBody = new User(req.body)
+    const userService = new UserService(userFromBody)
+    const token = await userService.signInUserAsync()
     res.json(token)
   } catch (error) {
     console.log(error)
