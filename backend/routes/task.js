@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const TaskService = require('../services/taskService')
+const TaskService = require('../services/taskservice')
+const Task = require('../models/task')
 
 router.get('/', async function (req, res) {
   try {
@@ -15,7 +16,7 @@ router.get('/', async function (req, res) {
 
 router.post('/', async function (req, res) {
   try {
-    const taskFromBody = req.body
+    const taskFromBody = new Task(req.body)
     const taskService = new TaskService(taskFromBody)
     const tasks = await taskService.createTaskAsync(taskFromBody)
     res.status(201).json(tasks)
@@ -27,7 +28,7 @@ router.post('/', async function (req, res) {
 
 router.patch('/', async function (req, res) {
   try {
-    const taskFromBody = req.body
+    const taskFromBody = new Task(req.body)
     const taskService = new TaskService(taskFromBody)
     const tasks = await taskService.updateTaskAsync(taskFromBody)
     res.status(201).json(tasks)
@@ -39,7 +40,7 @@ router.patch('/', async function (req, res) {
 
 router.delete('/', async function (req, res) {
   try {
-    const taskFromBody = req.body
+    const taskFromBody = new Task(req.body)
     const taskService = new TaskService(taskFromBody)
     await taskService.deleteTaskAsync(taskFromBody)
     res.sendStatus(200)

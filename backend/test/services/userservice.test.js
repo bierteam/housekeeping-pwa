@@ -1,5 +1,5 @@
 /* eslint-env jest */
-const UserService = require('../../services/userService')
+const UserService = require('../../services/userservice')
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 

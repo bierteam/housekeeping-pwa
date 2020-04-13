@@ -1,31 +1,32 @@
-const task = require('../models/task')
+const Task = require('../models/task')
 
 class TaskService {
+  constructor (task) {
+    this.task = task
+  }
+
   async findAllTasksAsync () {
-    const tasks = await task.find()
+    const tasks = Task.find()
     return tasks
   }
 
-  async createTaskAsync (taskObject) {
-    const tasks = await task.create(taskObject)
-    return tasks
+  async createTaskAsync () {
+    const task = await this.task.save()
+    return task
   }
 
-  async updateTaskAsync (taskObject) {
-    const _id = taskObject._id
-    if (!_id) {
-      throw new Error('No object id.')
+  async updateTaskAsync () {
+    const _id = this.task._id
+    const task = await Task.findOneAndUpdate({ _id }, this.task, { new: true })
+    if (!task) {
+      throw new Error('No task found, please provide a (valid) _id')
     }
-    const tasks = await task.findOneAndUpdate({ _id }, taskObject, { new: true })
-    return tasks
+    return task
   }
 
-  async deleteTaskAsync (taskObject) {
-    const _id = taskObject._id
-    if (!_id) {
-      throw new Error('No object id.')
-    }
-    await task.deleteOne({ _id }, taskObject)
+  async deleteTaskAsync () {
+    const _id = this.task._id
+    await Task.deleteOne({ _id }, this.taskObject)
   }
 }
 
