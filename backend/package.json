@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "content-filter": "^1.1.2",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "http-errors": "~1.7.0",

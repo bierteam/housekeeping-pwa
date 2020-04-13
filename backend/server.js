@@ -6,6 +6,7 @@ const logger = require('morgan')
 
 const app = express()
 const health = require('./routes/health')
+const filter = require('content-filter')
 
 // maybe use:
 // app.use(cors()) // https://www.npmjs.com/package/cors
@@ -20,6 +21,7 @@ app.disable('x-powered-by')
 app.use(express.json())
 app.use('/health', health) // above logger to not log this every second
 app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'))
+app.use(filter()) // https://stackoverflow.com/questions/13436467/javascript-nosql-injection-prevention-in-mongodb
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
