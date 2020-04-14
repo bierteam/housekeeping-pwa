@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div v-if="isAuthenticated" id="nav">
       <router-link to="/">Tasks</router-link> |
       <router-link to="/templates">Templates</router-link> |
       <router-link to="/verify">Verify</router-link>
@@ -31,3 +31,44 @@
   color: #42b983;
 }
 </style>
+
+<script>
+import Api from '@/services/Api'
+
+export default {
+  name: 'App',
+  computed: {
+    isAuthenticated () {
+      return this.$store.state.authenticated
+    }
+  },
+  methods: {
+    Logout () {
+      Api().delete('user/logout')
+        .then(response => {
+          if (response.status === 200) {
+            this.$router.push('/signin')
+          }
+        })
+        .catch(e => {
+          console.error(e)
+        })
+    },
+    Redirect () {
+      if (!this.isAuthenticated) {
+        const query = this.$route.query
+        if (this.$route.path !== '/' && this.$route.path !== '/signin') {
+          query.redirect = this.$route.path
+        }
+        this.$router.push({ path: '/signin', query })
+      }
+    }
+  },
+  beforeMount () { // Refresh, fresh page load
+    this.Redirect()
+  },
+  beforeUpdate () { // Uri change, link, etc.
+    this.Redirect()
+  }
+}
+</script>

@@ -27,4 +27,35 @@ router.post('/signin', async function (req, res) {
   }
 })
 
+router.get('/refresh', async function (req, res) {
+  try {
+    // TODO check for cookie with refresh token
+    // if token is valid, return JWT and new refresh token cookie
+    res.send('To be implemented.')
+  } catch (error) {
+    console.log(error)
+    res.status(401).json('No refresh token send.')
+  }
+})
+
+router.delete('/logout', async function (req, res) {
+  try {
+    // TODO delete refresh token
+    res.send('To be implemented.')
+  } catch (error) {
+    console.log(error)
+    res.status(401).json('No refresh token send.')
+  }
+})
+
+router.delete('/logoutall', async function (req, res) {
+  try {
+    // TODO delete all refresh tokens
+    res.send('To be implemented.')
+  } catch (error) {
+    console.log(error)
+    res.status(401).json('No refresh token send.')
+  }
+})
+
 module.exports = router
