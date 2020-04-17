@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
-const health = require('./health')
 const task = require('./task')
 const user = require('./user')
+const jwtmiddleware = new (require('../middleware/jwtmiddleware'))()
 
-router.use('/health', health)
+router.use(jwtmiddleware.validateJwt)
+
 router.use('/task', task)
 router.use('/user', user)
 

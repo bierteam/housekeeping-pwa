@@ -1,28 +1,29 @@
 {
-  "description": "auth",
+  "description": "backend",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bierteam/import-bier.git"
+    "url": "git+https://github.com/bierteam/housekeeping-pwa.git"
   },
-  "homepage": "https://github.com/bierteam/import-bier/docs/README.md",
+  "homepage": "https://github.com/bierteam/housekeeping-pwa/README.md",
   "contibutors": [
     "Oscar Wieman (https://github.com/oscrx)",
     "Nino van der Laan (https://github.com/NvdLaan)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bierteam/FrontEnd/issues"
+    "url": "https://github.com/bierteam/housekeeping-pwa/issues"
   },
   "main": "server.js",
   "scripts": {
     "start": "nodemon",
-    "test": "standard",
+    "test": "standard && jest",
     "coverage": "codecov",
-    "docker-build": "docker build . -t auth",
-    "docker-run": "docker run --env-file .env auth"
+    "docker-build": "docker build . -t bierteam/hk-pwa-backend",
+    "docker-run": "docker run --rm --env-file .env bierteam/hk-pwa-backend"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "content-filter": "^1.1.2",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "http-errors": "~1.7.0",
@@ -34,11 +35,24 @@
   },
   "devDependencies": {
     "codecov": "3.6.5",
-    "debug": "4.1.1",
     "dotenv": "8.2.0",
     "jest": "25.3.0",
     "nodemon": "2.0.3",
     "rimraf": "3.0.2",
     "standard": "14.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/coverage/**"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
