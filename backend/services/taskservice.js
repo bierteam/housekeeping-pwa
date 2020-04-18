@@ -26,7 +26,10 @@ class TaskService {
 
   async deleteTaskAsync () {
     const _id = this.task._id
-    await Task.deleteOne({ _id }, this.taskObject)
+    const task = await Task.deleteOne({ _id }, this.taskObject)
+    if (task.deletedCount === 0) {
+      throw new Error(`No task found with _id ${_id}`)
+    }
   }
 }
 
