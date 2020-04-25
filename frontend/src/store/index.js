@@ -8,6 +8,9 @@ export default new Vuex.Store({
     authenticated: true // toggle in vue devtools
   },
   mutations: {
+    toggle (state) {
+      state.authenticated = !state.authenticated
+    }
   },
   actions: {
   },
