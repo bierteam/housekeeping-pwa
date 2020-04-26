@@ -6,8 +6,14 @@ class TaskService {
   }
 
   async findAllTasksAsync () {
-    const tasks = Task.find()
+    const tasks = await Task.find()
     return tasks
+  }
+
+  async findTaskAsync () {
+    const _id = this.task._id
+    const task = await Task.findOne({ _id })
+    return task
   }
 
   async createTaskAsync () {
@@ -16,12 +22,12 @@ class TaskService {
   }
 
   async updateTaskAsync () {
-    const _id = this.task._id
-    const task = await Task.findOneAndUpdate({ _id }, this.task, { new: true })
-    if (!task) {
+    this.task.isNew = false
+    const updatedTask = await this.task.save({ new: true })
+    if (!updatedTask) {
       throw new Error('No task found, please provide a (valid) _id')
     }
-    return task
+    return updatedTask
   }
 
   async deleteTaskAsync () {
@@ -30,6 +36,22 @@ class TaskService {
     if (task.deletedCount === 0) {
       throw new Error(`No task found with _id ${_id}`)
     }
+  }
+
+  async completeTaskAsync (id) {
+    const updatedTask = await Task.findOneAndUpdate({ id }, { completed: true, completedBy: this.task.completedBy }, { new: true })
+    if (!updatedTask) {
+      throw new Error('No task found, please provide a (valid) _id')
+    }
+    return updatedTask
+  }
+
+  async approveTaskAsync (id) {
+    const updatedTask = await Task.findOneAndUpdate({ id }, { approved: true, approvedBy: this.task.approvedBy }, { new: true })
+    if (!updatedTask) {
+      throw new Error('No task found, please provide a (valid) _id')
+    }
+    return updatedTask
   }
 }
 

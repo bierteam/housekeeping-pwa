@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const TaskService = require('../services/taskservice')
 const Task = require('../models/task')
+const WorkFlowService = require('../services/workflowservice')
 
 router.get('/', async function (req, res) {
   try {
@@ -30,8 +31,34 @@ router.patch('/', async function (req, res) {
   try {
     const taskFromBody = new Task(req.body)
     const taskService = new TaskService(taskFromBody)
-    const tasks = await taskService.updateTaskAsync(taskFromBody)
-    res.status(201).json(tasks)
+    const task = await taskService.updateTaskAsync()
+    res.status(201).json(task)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
+})
+
+router.patch('/complete', async function (req, res) {
+  try {
+    const taskFromBody = new Task(req.body)
+    const requester = req.user
+    const workFlowService = new WorkFlowService(taskFromBody, requester)
+    await workFlowService.completeTaskAsync()
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Something went wrong')
+  }
+})
+
+router.patch('/approve', async function (req, res) {
+  try {
+    const taskFromBody = new Task(req.body)
+    const requester = req.user
+    const workFlowService = new WorkFlowService(taskFromBody, requester)
+    await workFlowService.approveTaskAsync()
+    res.sendStatus(200)
   } catch (error) {
     console.log(error)
     res.status(500).json('Something went wrong')

@@ -60,7 +60,7 @@ describe('UserService', () => {
       task: 'test'
     }
     const newTask = new Task(mockObject)
-    Task.findOneAndUpdate = jest.fn().mockResolvedValue(mockObject)
+    newTask.save = jest.fn().mockResolvedValue(mockObject)
 
     // Act
     const taskService = new TaskService(newTask)
@@ -82,7 +82,7 @@ describe('UserService', () => {
       task: 'test'
     }
     const newTask = new Task(mockObject)
-    Task.findOneAndUpdate = jest.fn().mockResolvedValue(null)
+    newTask.save = jest.fn().mockResolvedValue(null)
 
     // Act
     const taskService = new TaskService(newTask)

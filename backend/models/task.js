@@ -27,10 +27,33 @@ const taskSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  completedBy: {
+    type: String,
+    required: false,
+    default: false
+  },
   completedDate: {
     type: Date,
     default: function () {
       if (this.completed) {
+        return Date.now()
+      }
+    }
+  },
+  approved: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  approvedBy: {
+    type: String,
+    required: false,
+    default: false
+  },
+  approvedDate: {
+    type: Date,
+    default: function () {
+      if (this.approved) {
         return Date.now()
       }
     }

@@ -4,7 +4,7 @@ const task = require('./task')
 const user = require('./user')
 const jwtmiddleware = new (require('../middleware/jwtmiddleware'))()
 
-router.use(jwtmiddleware.validateJwt)
+router.use(jwtmiddleware.validateJwt.bind(jwtmiddleware))
 
 router.use('/task', task)
 router.use('/user', user)
