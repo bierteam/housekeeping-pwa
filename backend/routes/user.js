@@ -31,27 +31,28 @@ router.get('/refresh', async function (req, res) {
   try {
     // TODO check for cookie with refresh token
     // if token is valid, return JWT and new refresh token cookie
-    res.send('To be implemented.')
+    // res.json('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJfaWQiOiI0M2QwNTFmZi05MzYyLTRkNDItODdhNi0yZjFmMDM2NmQxNzMiLCJpYXQiOjE1ODc5MjMzNDgsImV4cCI6MTU4NzkyNDI0OH0.Apvhc7hw2Vj_Q6wEC5qe7XF609nv_bO3W1v6-68YjpA')
+    res.status(501).json('To be implemented.')
   } catch (error) {
     console.log(error)
     res.status(401).json('No refresh token send.')
   }
 })
 
-router.delete('/logout', async function (req, res) {
+router.delete('/signout', async function (req, res) {
   try {
     // TODO delete refresh token
-    res.send('To be implemented.')
+    res.status(501).json('To be implemented.')
   } catch (error) {
     console.log(error)
     res.status(401).json('No refresh token send.')
   }
 })
 
-router.delete('/logoutall', async function (req, res) {
+router.delete('/signoutall', async function (req, res) {
   try {
     // TODO delete all refresh tokens
-    res.send('To be implemented.')
+    res.status(501).json('To be implemented.')
   } catch (error) {
     console.log(error)
     res.status(401).json('No refresh token send.')

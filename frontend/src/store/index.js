@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    authenticated: true // toggle in vue devtools
+    jwt: '' // toggle in vue devtools
   },
   mutations: {
-    toggle (state) {
-      state.authenticated = !state.authenticated
+    saveJWT (state, jwt) {
+      state.jwt = jwt
     }
   },
   actions: {
