@@ -2,19 +2,14 @@ import axios from 'axios'
 import store from '../store'
 
 export default (method, uri) => {
-  // const instance = axios.create({
-  //   baseURL: 'api/v1/',
-  //   headers: {
-  //     common: {
-  //       Authorization: store.state.jwt ? 'Bearer ' + store.state.jwt : ''
-  //     }
-  //   }
-  // })
-  const instance = axios.create()
-  instance.baseURL = 'api/v1/'
-  if (store.state.jwt) {
-    instance.headers.common.Authorization = store.state.jwt
-  }
+  const instance = axios.create({
+    baseURL: 'api/v1/',
+    headers: {
+      common: {
+        Authorization: store.state.jwt ? 'Bearer ' + store.state.jwt : ''
+      }
+    }
+  })
 
   instance.interceptors.response.use(function (response) { // intercept all responses and check for 401's
     return response
