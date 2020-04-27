@@ -86,6 +86,7 @@
   "gitHooks": {
     "pre-commit": "npm run lint"
   },
+  "name": "frontend",
   "homepage": "https://github.com/bierteam/housekeeping-pwa/README.md",
   "license": "MIT",
   "repository": {
