@@ -53,22 +53,7 @@ export default {
         .catch(e => {
           console.error(e)
         })
-    },
-    Redirect () {
-      if (!this.authenticated) {
-        const query = this.$route.query
-        if (this.$route.path !== '/' && this.$route.path !== '/signin') {
-          query.redirect = this.$route.path
-        }
-        this.$router.push({ path: '/signin', query })
-      } else { delete this.$route.query.redirect }
     }
-  },
-  beforeMount () { // Refresh, fresh page load
-    this.Redirect()
-  },
-  beforeUpdate () { // Uri change, link, etc.
-    this.Redirect()
   }
 }
 </script>

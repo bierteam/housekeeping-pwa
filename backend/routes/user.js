@@ -23,7 +23,7 @@ router.post('/signin', async function (req, res) {
     res.json(token)
   } catch (error) {
     console.log(error)
-    res.status(401).json('Error while logging in')
+    res.status(403).json('Error while logging in')
   }
 })
 

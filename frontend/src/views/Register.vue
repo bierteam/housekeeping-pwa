@@ -2,28 +2,35 @@
   <form class="form-signin">
     <div class="text-center mb-4">
       <img class="mb-4" alt="Household logo" width="100" height="100" src="../assets/household.svg">
-      <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
     </div>
     <b-alert v-if="error" show variant="danger" dismissible>{{error}}</b-alert>
+    <b-alert v-if="isPwned" show variant="danger">This password has been pwned.</b-alert>
+    <b-alert v-if="notEqual" show variant="danger">The password is not the same.</b-alert>
     <div class="form-label-group">
       <input type="username" id="inputUsername" class="form-control" placeholder="Username" v-model="username" required autofocus>
       <label for="inputUsername">Username</label>
     </div>
 
     <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" required>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" @focus='focus = true' @blur='focus = false' required>
       <label for="inputPassword">Password</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" v-model="remember"> Remember me on this device
-      </label>
+    <div class="form-label-group">
+      <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirm password" v-model="passwordConfirm" @focus='focus = true' @blur='focus = false' required>
+      <label for="inputPasswordConfirm">Confirm password</label>
     </div>
-    <button @click.prevent="Signin" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    <div class="form-label-group">
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="email" required>
+      <label for="inputEmail">Email address</label>
+    </div>
+
+    <button type="submit" @click.prevent="Signin" :disabled="isDisabled" class="btn btn-lg btn-primary btn-block">Register</button>
     <div class="text-center">
       <br>
-      <router-link :to="{ name: 'Register', params: { nextUri: this.$route.params.nextUri }}">Or register if you don't have an account yet</router-link>
+      <router-link :to="{ name: 'Sign in', params: { nextUri: this.$route.params.nextUri }}">Or sign in if you already have an account</router-link>
     </div>
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2020 BierTeam</p>
     <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
@@ -32,27 +39,49 @@
 
 <script>
 import Api from '@/services/Api'
+import pwned from 'havetheybeenpwned'
 
 export default {
   data () { // local data
     return {
       username: '',
+      email: '',
       password: '',
-      remember: true,
-      error: '',
-      message: ''
+      passwordConfirm: '',
+      isPwned: false,
+      focus: false,
+      error: ''
+    }
+  },
+  beforeUpdate () {
+    this.CheckPassword()
+  },
+  computed: {
+    isDisabled: function () {
+      return !(this.$data.username && this.$data.password && this.$data.passwordConfirm && this.$data.email && !this.$data.isPwned && !this.$data.notEqual)
+    },
+    notEqual: function () {
+      return Boolean(!this.$data.focus && this.$data.password !== this.$data.passwordConfirm)
     }
   },
   methods: {
+    CheckPassword () {
+      if (!this.focus) {
+        pwned(this.$data.password).then(isPwned => {
+          this.$data.isPwned = isPwned
+        })
+      }
+    },
     Signin () {
       const data = {
         username: this.$data.username,
         password: this.$data.password,
-        remember: this.$data.remember
+        email: this.$data.email,
+        invite: this.$route.query.invite
       }
-      Api().post('user/signin', data)
+      Api().post('user/create', data)
         .then(response => {
-          if (response.status === 200) {
+          if (response.status === 201) {
             this.$store.commit('saveJWT', response.data)
             this.$router.push((this.$route.params.nextUri) ? { path: this.$route.params.nextUri } : '/')
           }
