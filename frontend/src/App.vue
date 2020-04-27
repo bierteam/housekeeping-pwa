@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div class="text-center" v-if="authenticated" id="nav">
       <router-link to="/">Tasks</router-link> |
       <router-link to="/templates">Templates</router-link> |
       <router-link to="/verify">Verify</router-link>
@@ -12,10 +12,10 @@
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+  /* text-align: center; */
+  /* color: #2c3e50; */
 }
 
 #nav {
@@ -31,3 +31,29 @@
   color: #42b983;
 }
 </style>
+
+<script>
+import Api from '@/services/Api'
+
+export default {
+  name: 'App',
+  computed: {
+    authenticated () {
+      return this.$store.state.jwt
+    }
+  },
+  methods: {
+    Signout () {
+      Api().delete('user/signout')
+        .then(response => {
+          if (response.status === 200) {
+            this.$router.push('/signin')
+          }
+        })
+        .catch(e => {
+          console.error(e)
+        })
+    }
+  }
+}
+</script>
