@@ -1,4 +1,5 @@
 {
+  "name": "backend",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bierteam/housekeeping-pwa.git"
