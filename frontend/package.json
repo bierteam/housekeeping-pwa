@@ -29,7 +29,7 @@
     "@vue/eslint-config-standard": "5.1.2",
     "@vue/test-utils": "1.0.3",
     "babel-eslint": "10.1.0",
-    "chromedriver": "81.0.0",
+    "chromedriver": "83.0.0",
     "eslint": "7.1.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-node": "11.1.0",
