@@ -34,7 +34,7 @@
     "uuid": "^7.0.0"
   },
   "devDependencies": {
-    "codecov": "3.7.0",
+    "codecov": "3.7.1",
     "dotenv": "8.2.0",
     "jest": "26.1.0",
     "nodemon": "2.0.4",
