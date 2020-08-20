@@ -14,7 +14,7 @@
     "core-js": "3.6.5",
     "havetheybeenpwned": "1.0.1",
     "register-service-worker": "1.7.1",
-    "vue": "2.6.11",
+    "vue": "2.6.12",
     "vue-router": "3.4.3",
     "vuex": "3.5.1"
   },
@@ -37,7 +37,7 @@
     "eslint-plugin-standard": "4.0.1",
     "eslint-plugin-vue": "6.2.2",
     "geckodriver": "1.20.0",
-    "vue-template-compiler": "2.6.11"
+    "vue-template-compiler": "2.6.12"
   },
   "eslintConfig": {
     "root": true,
