@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "0.21.0",
     "bootstrap": "4.5.3",
-    "bootstrap-vue": "2.20.1",
+    "bootstrap-vue": "2.21.0",
     "core-js": "3.8.1",
     "havetheybeenpwned": "1.0.1",
     "register-service-worker": "1.7.2",
