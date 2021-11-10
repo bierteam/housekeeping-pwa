@@ -32,7 +32,7 @@
     "babel-eslint": "10.1.0",
     "chromedriver": "91.0.1",
     "eslint": "7.32.0",
-    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-standard": "4.1.0",
     "eslint-plugin-vue": "7.20.0",
