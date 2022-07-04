@@ -36,7 +36,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-standard": "4.1.0",
     "eslint-plugin-vue": "7.20.0",
-    "geckodriver": "2.0.4",
+    "geckodriver": "3.0.2",
     "vue-loader-v16": "npm:vue-loader@16.8.3",
     "vue-template-compiler": "2.6.14"
   },
